@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour
@@ -38,7 +36,7 @@ public class Obstacle : MonoBehaviour
             {
                 if(!collision.GetComponent<ShipController>().isDead)
                 {
-
+                    ShipGameManager.Instance.AddScore(1);
                 }
             }
     }

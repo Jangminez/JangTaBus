@@ -6,15 +6,18 @@ public class BackGroundLoop : MonoBehaviour
     [SerializeField] Obstacle[] obstacles;
     [SerializeField] float scrollSpeed = 3f;
     [SerializeField] float backgroundWidth = 22f;
-    [SerializeField] int startIdx_Bg;
-    [SerializeField] int endIdx_Bg = 0;
-    [SerializeField] int startIdx_Ob;
-    [SerializeField] int endIdx_Ob = 0;
+    [SerializeField] int rightIdx_Bg; // 오른쪽 끝
+    [SerializeField] int leftIdx_Bg = 0;
+    [SerializeField] int rightIdx_Ob; // 오른쪽 끝
+    [SerializeField] int leftIdx_Ob = 0;
     private float camWidth;
+    public bool isGameOver = false;
+
     void Start()
     {
-        startIdx_Bg = backgrounds.Length - 1;
-        startIdx_Ob = obstacles.Length - 1;
+        rightIdx_Bg = backgrounds.Length - 1;
+        rightIdx_Ob = obstacles.Length - 1;
+
         camWidth = Camera.main.orthographicSize;
 
         Vector3 lastObstacle = Vector3.zero;
@@ -27,6 +30,8 @@ public class BackGroundLoop : MonoBehaviour
 
     void Update()
     {
+        if(isGameOver) return;
+        
         foreach (Transform bg in backgrounds)
         {
             bg.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
@@ -43,27 +48,27 @@ public class BackGroundLoop : MonoBehaviour
 
     void ScrollBackGround()
     {
-        if (backgrounds[endIdx_Bg].position.x < -backgroundWidth)
+        if (backgrounds[leftIdx_Bg].position.x < -backgroundWidth)
         {
-            Vector3 frontPos = backgrounds[startIdx_Bg].localPosition;
-            backgrounds[endIdx_Bg].localPosition = frontPos + Vector3.right * backgroundWidth;
+            Vector3 frontPos = backgrounds[rightIdx_Bg].localPosition;
+            backgrounds[leftIdx_Bg].localPosition = frontPos + Vector3.right * backgroundWidth;
 
-            int pre_startIndex = startIdx_Bg;
-            startIdx_Bg = endIdx_Bg;
-            endIdx_Bg = pre_startIndex - 1 == -1 ? backgrounds.Length - 1 : pre_startIndex - 1;
+            int pre_rightIndex = rightIdx_Bg;
+            rightIdx_Bg = leftIdx_Bg;
+            leftIdx_Bg = pre_rightIndex - 1 == -1 ? backgrounds.Length - 1 : pre_rightIndex - 1;
         }
     }
 
     void ScrollObstacles()
     {
-        if (obstacles[endIdx_Ob].transform.position.x < -camWidth)
+        if (obstacles[leftIdx_Ob].transform.position.x < -camWidth)
         {
-            Vector3 frontPos = obstacles[startIdx_Ob].transform.localPosition;
-            obstacles[endIdx_Ob].SetRandomPosition(frontPos);
+            Vector3 frontPos = obstacles[rightIdx_Ob].transform.localPosition;
+            obstacles[leftIdx_Ob].SetRandomPosition(frontPos);
 
-            int pre_startIndex = startIdx_Ob;
-            startIdx_Ob = endIdx_Ob;
-            endIdx_Ob = pre_startIndex - 1 == -1 ? obstacles.Length - 1 : pre_startIndex - 1;
+            int pre_rightIndex = rightIdx_Ob;
+            rightIdx_Ob = leftIdx_Ob;
+            leftIdx_Ob = pre_rightIndex - 1 == -1 ? obstacles.Length - 1 : pre_rightIndex - 1;
         }
     }
 }

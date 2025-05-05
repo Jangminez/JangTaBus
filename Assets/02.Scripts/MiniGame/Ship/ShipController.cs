@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -54,8 +51,10 @@ public class ShipController : MonoBehaviour
         if(isDead) return;
 
         isDead = true;
-        
+
         particle.Stop();
         _anim.SetTrigger("IsDie");
+
+        ShipGameManager.Instance.GameOver();
     }
 }

@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/01.Scenes/MiniGame_Ship.unity
+    guid: b45c739be4260634dbb94c81bf9a5015
   m_configObjects: {}
