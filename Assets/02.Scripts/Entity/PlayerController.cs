@@ -15,7 +15,7 @@ public class PlayerController : BaseController
 
         Init();
     }
-    
+
     void OnMove(InputValue inputValue)
     {
         movementDirection = inputValue.Get<Vector2>();
