@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : MonoBehaviour
 {
     [SerializeField] public BaseUI currentUI;
     [SerializeField] private GameObject goalCanvas;
@@ -13,9 +13,8 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject coinCanvas;
     private TextMeshProUGUI coinText;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         okButton.onClick.AddListener(ClickOkButton); 
         coinText = coinCanvas.GetComponentInChildren<TextMeshProUGUI>();
     }  
@@ -54,7 +53,7 @@ public class UIManager : Singleton<UIManager>
     {
         coinCanvas.SetActive(isActive);
     }
-    
+
     public void SetCoinText(int coin)
     {
         coinText.text = coin.ToString();

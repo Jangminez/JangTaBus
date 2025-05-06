@@ -3,15 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadManager : Singleton<SceneLoadManager>
+public class SceneLoadManager : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
     public event Action<string> onSceneLoaded;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
-
         canvasGroup = GetComponentInChildren<CanvasGroup>();
     }
     public void LoadScene(string sceneName)

@@ -32,8 +32,8 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        sceneLoadManager = FindObjectOfType<SceneLoadManager>();
-        uiManager = FindObjectOfType<UIManager>();
+        sceneLoadManager = GetComponentInChildren<SceneLoadManager>();
+        uiManager = GetComponentInChildren<UIManager>();
 
         // 씬 로딩 이벤트 연결
         if (sceneLoadManager != null)
@@ -95,12 +95,12 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartMiniGame()
     {
-        SceneLoadManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
+        sceneLoadManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ExitMiniGame()
     {
-        SceneLoadManager.Instance.LoadScene("MainScene");
+        sceneLoadManager.LoadScene("MainScene");
         Time.timeScale = 1f;
     }
 
