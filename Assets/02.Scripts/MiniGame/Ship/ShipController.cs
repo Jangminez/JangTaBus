@@ -26,21 +26,20 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
-        if(isDead) return;
+        if (isDead) return;
 
         if (Input.GetMouseButtonDown(0))
         {
+            SoundManager.PlaySFX(jumpClip);
             isUp = true;
         }
     }
     void FixedUpdate()
     {
-        if(isDead) return;
+        if (isDead) return;
 
         if (isUp)
         {
-            SoundManager.PlaySFX(jumpClip);
-
             _rb.velocity = Vector2.zero;
             _rb.velocity += Vector2.up * jumpForce;
             isUp = false;
@@ -52,10 +51,10 @@ public class ShipController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(isDead) return;
+        if (isDead) return;
 
         SoundManager.PlaySFX(deathClip);
-        
+
         isDead = true;
 
         particle.Stop();
