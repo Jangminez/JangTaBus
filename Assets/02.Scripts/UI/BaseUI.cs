@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public abstract class BaseUI : MonoBehaviour
@@ -13,6 +12,12 @@ public abstract class BaseUI : MonoBehaviour
         this.uiManager = uiManager;
     }
 
-    public abstract void UpdateScoreText(int score);
-    public abstract void SetGameOverUI();
+    public virtual void UpdateScoreText(int score)
+    {
+        
+    }
+    public virtual void SetGameOverUI()
+    {
+
+    }
 }

@@ -16,11 +16,4 @@ public class StatController : MonoBehaviour
         get => speed;   
         set => speed = Math.Max(0, value);
     }
-
-    private int gold;
-    public int Gold
-    {
-        get => gold;
-        set => gold = Math.Max(0, value);
-    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
     private CanvasGroup canvasGroup;
-    public event Action onSceneLoaded;
+    public event Action<string> onSceneLoaded;
 
     protected override void Awake()
     {
@@ -28,7 +28,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
         yield return new WaitUntil(() => asyncOperation.isDone);
 
-        onSceneLoaded?.Invoke();
+        onSceneLoaded?.Invoke(sceneName);
         OffLoadingScreen();
 
         

@@ -6,6 +6,14 @@ public class GameManager : Singleton<GameManager>
 {
     SceneLoadManager sceneLoadManager;
     UIManager uiManager;
+
+    private int coin;
+    public int Coin
+    {
+        get => coin;
+        set => coin = Math.Max(0, value);
+    }
+
     public MiniGameManager currentMiniGame;
     private int miniGameScore;
     public int MiniGameScore { get => miniGameScore; set => miniGameScore = Math.Max(0, value); }
@@ -19,15 +27,24 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         InitGoalScore();
+        coin = PlayerPrefs.GetInt("Coin", 0);
     }
+
     void Start()
     {
         sceneLoadManager = FindObjectOfType<SceneLoadManager>();
         uiManager = FindObjectOfType<UIManager>();
 
+        // 씬 로딩 이벤트 연결
         if (sceneLoadManager != null)
             sceneLoadManager.onSceneLoaded += OnMiniGameLoaded;
+
+        uiManager.SetCoinText(coin);
     }
+
+
+
+    #region  미니게임 관련
 
     // 각 미니게임의 목표 점수 초기화
     void InitGoalScore()
@@ -36,13 +53,29 @@ public class GameManager : Singleton<GameManager>
     }
 
     // 미니게임 씬 로드 시 초기화
-    void OnMiniGameLoaded()
+    void OnMiniGameLoaded(string sceneName)
+    {
+        if (sceneName == "MainScene")
+        {
+            uiManager.ActiveCoinCanvas(true);
+        }
+
+        else
+        {
+            uiManager.ActiveCoinCanvas(false);
+
+            miniGameScore = 0;
+            miniGameBestScore = 0;
+
+            InitMiniGame();
+        }
+    }
+
+    void InitMiniGame()
     {
         currentMiniGame = FindObjectOfType<MiniGameManager>();
         uiManager.currentUI = FindObjectOfType<BaseUI>();
 
-        miniGameScore = 0;
-        miniGameBestScore = 0;
         if (currentMiniGame && uiManager)
         {
             uiManager.currentUI.Init(this, uiManager);
@@ -98,9 +131,17 @@ public class GameManager : Singleton<GameManager>
                     PlayerPrefs.SetInt("SHIPGAME_GOAL", shipGame_Goal);
 
                     uiManager.SetGoalUI(true, rewardCoin * 2);
+                    coin += rewardCoin * 2;
+                    uiManager.SetCoinText(coin);
                 }
                 else
+                {
                     uiManager.SetGoalUI(false, rewardCoin);
+                    coin += rewardCoin;
+                    uiManager.SetCoinText(coin);
+                }
+
+                PlayerPrefs.SetInt("Coin", coin);
                 break;
 
             case MiniGameType.Dungeon:
@@ -108,4 +149,5 @@ public class GameManager : Singleton<GameManager>
         }
 
     }
+    #endregion
 }
