@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ShipGameManager : MiniGameManager
 {
-    static ShipGameManager instance;
-    public static ShipGameManager Instance { get => instance; }
     [SerializeField] private BackGroundLoop backGroundLoop;
 
     public override void Init(GameManager gameManager, UIManager uiManager)
@@ -11,7 +9,6 @@ public class ShipGameManager : MiniGameManager
         base.Init(gameManager, uiManager);
 
         gameManager.MiniGameBestScore = PlayerPrefs.GetInt("SHIP_BESTSCORE", 0);
-        goalScore = gameManager.ShipGame_Goal;
         backGroundLoop = FindObjectOfType<BackGroundLoop>();
     }
 
@@ -19,6 +16,7 @@ public class ShipGameManager : MiniGameManager
     {
         base.GameOver();
         backGroundLoop.isGameOver = true;
+        gameManager.CheckGoal(MiniGameType.Ship);
     }
 
     public override void AddScore(int score)

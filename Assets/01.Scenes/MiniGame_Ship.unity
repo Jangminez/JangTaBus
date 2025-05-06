@@ -301,7 +301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: '
+  m_text: "\uC810\uC218: "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
   m_sharedMaterial: {fileID: 4658833853353769546, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RE ?
+  m_text: "\uB2E4\uC2DC\uD558\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
   m_sharedMaterial: {fileID: 4658833853353769546, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
@@ -2819,7 +2819,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Best: '
+  m_text: "\uCD5C\uACE0 \uC810\uC218:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
   m_sharedMaterial: {fileID: 4658833853353769546, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
@@ -6939,7 +6939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7925380980b27eb47a1d13d8ee785892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalScore: 0
   backGroundLoop: {fileID: 0}
 --- !u!4 &600109811
 Transform:
@@ -13312,7 +13311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: "\uAC8C\uC784 \uC885\uB8CC !!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
   m_sharedMaterial: {fileID: 4658833853353769546, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
@@ -13321,8 +13320,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190251
+  m_fontColor: {r: 0.6698113, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -23755,7 +23754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit
+  m_text: "\uB098\uAC00\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}
   m_sharedMaterial: {fileID: 4658833853353769546, guid: f2b23462545612d47bdcdce6da52b5d2, type: 2}

@@ -14,6 +14,12 @@ public class GameManager : Singleton<GameManager>
     private int shipGame_Goal;
     public int ShipGame_Goal { get => shipGame_Goal; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        InitGoalScore();
+    }
     void Start()
     {
         sceneLoadManager = FindObjectOfType<SceneLoadManager>();
@@ -21,15 +27,15 @@ public class GameManager : Singleton<GameManager>
 
         if (sceneLoadManager != null)
             sceneLoadManager.onSceneLoaded += OnMiniGameLoaded;
-
-        InitGoalScore();
     }
 
+    // 각 미니게임의 목표 점수 초기화
     void InitGoalScore()
     {
         shipGame_Goal = PlayerPrefs.GetInt("SHIPGAME_GOAL", 10);
     }
 
+    // 미니게임 씬 로드 시 초기화
     void OnMiniGameLoaded()
     {
         currentMiniGame = FindObjectOfType<MiniGameManager>();
@@ -78,16 +84,23 @@ public class GameManager : Singleton<GameManager>
         sceneLoadManager.LoadScene("MiniGame_Ship");
     }
 
-    private void CheckGoal(int score, MiniGameType type)
+    // 각 미니 게임 목표 점수 체크
+    public void CheckGoal(MiniGameType type)
     {
+        int rewardCoin = 10 * miniGameScore;
+
         switch (type)
         {
             case MiniGameType.Ship:
-                if (score >= shipGame_Goal)
+                if (miniGameScore >= shipGame_Goal)
                 {
                     shipGame_Goal += 10;
                     PlayerPrefs.SetInt("SHIPGAME_GOAL", shipGame_Goal);
+
+                    uiManager.SetGoalUI(true, rewardCoin * 2);
                 }
+                else
+                    uiManager.SetGoalUI(false, rewardCoin);
                 break;
 
             case MiniGameType.Dungeon:

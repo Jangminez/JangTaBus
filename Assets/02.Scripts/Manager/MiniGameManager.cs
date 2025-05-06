@@ -4,7 +4,6 @@ public class MiniGameManager : MonoBehaviour
 {
     protected UIManager uiManager;
     protected GameManager gameManager;
-    public int goalScore;
 
     public virtual void Awake()
     {

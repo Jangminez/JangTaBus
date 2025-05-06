@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class MiniGameZone : MonoBehaviour
 {
     [SerializeField] private MiniGameType miniGameType;
     [SerializeField] private GameObject infoCanvas;
+    [SerializeField] private TextMeshProUGUI goalText;
     [SerializeField] private Button startButton;
 
     void Awake()
@@ -14,6 +16,18 @@ public class MiniGameZone : MonoBehaviour
         infoCanvas.SetActive(false);
     }
 
+    void Start()
+    {
+        switch(miniGameType)
+        {
+            case MiniGameType.Ship:
+                goalText.text = GameManager.Instance.ShipGame_Goal.ToString();
+            break;
+
+            case MiniGameType.Dungeon:
+            break;
+        }
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         infoCanvas.SetActive(true);
