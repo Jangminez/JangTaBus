@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ShipUI : BaseUI
 {
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI goalText;
     [SerializeField] TextMeshProUGUI finalScoreText;
     [SerializeField] TextMeshProUGUI bestScoreText;
     [SerializeField] Button startButton;
@@ -12,28 +13,25 @@ public class ShipUI : BaseUI
     [SerializeField] Button exitButton;
     [SerializeField] Button exitBtn;
 
-    private ShipGameManager shipGameManager;
-
-    void Awake()
+    public override void Init(GameManager gameManager, UIManager uiManager)
     {
-        Init(UIManager.Instance);
-    }
-    public override void Init(UIManager uiManager)
-    {
-        base.Init(uiManager);
+        base.Init(gameManager, uiManager);
 
-        uiManager.currentUI = this;
-        shipGameManager = ShipGameManager.Instance;
+        // 버튼 이벤트 연결
         startButton.onClick.AddListener(ClickStartButton);
         restartButton.onClick.AddListener(ClickRestartButton);
         exitButton.onClick.AddListener(ClickExitButton);
         exitBtn.onClick.AddListener(ClickExitButton);
+
+        // 목표 점수 UI 표시
+        goalText.text = gameManager.ShipGame_Goal.ToString();
     }
 
+    // 게임 오버 UI
     public override void SetGameOverUI()
     {
-        finalScoreText.text = shipGameManager.Score.ToString();
-        bestScoreText.text = shipGameManager.BestScore.ToString();
+        finalScoreText.text = gameManager.MiniGameScore.ToString();
+        bestScoreText.text = gameManager.MiniGameBestScore.ToString();
 
         gameOverUI.SetActive(true);
     }
@@ -46,16 +44,16 @@ public class ShipUI : BaseUI
     void ClickStartButton()
     {
         startButton.transform.parent.gameObject.SetActive(false);
-        shipGameManager.GameStart();
+        gameManager.StartMiniGame();
     }
 
     void ClickRestartButton()
     {
-        shipGameManager.RestartGame();
+        gameManager.RestartMiniGame();
     }
 
     void ClickExitButton()
     {
-        shipGameManager.ExitGame();
+        gameManager.ExitMiniGame();
     }
 }

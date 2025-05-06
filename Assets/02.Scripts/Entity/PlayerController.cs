@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : BaseController
 {
     private Camera _cam;
-
+    
     public void Init()
     {
         _cam = Camera.main;

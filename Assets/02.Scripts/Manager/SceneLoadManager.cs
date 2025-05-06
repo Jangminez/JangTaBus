@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
     private CanvasGroup canvasGroup;
+    public event Action onSceneLoaded;
 
     protected override void Awake()
     {
@@ -24,12 +26,12 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
-        if(!asyncOperation.isDone)
-        {
-            yield return null;
-        }
+        yield return new WaitUntil(() => asyncOperation.isDone);
 
+        onSceneLoaded?.Invoke();
         OffLoadingScreen();
+
+        
     }
 
     void OnLoadingScreen()

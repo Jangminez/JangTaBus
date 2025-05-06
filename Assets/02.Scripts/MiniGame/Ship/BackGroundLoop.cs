@@ -21,7 +21,7 @@ public class BackGroundLoop : MonoBehaviour
         camWidth = Camera.main.orthographicSize;
 
         Vector3 lastObstacle = Vector3.zero;
-        
+
         foreach (var ob in obstacles)
         {
             lastObstacle = ob.SetRandomPosition(lastObstacle);
@@ -30,8 +30,8 @@ public class BackGroundLoop : MonoBehaviour
 
     void Update()
     {
-        if(isGameOver) return;
-        
+        if (isGameOver) return;
+
         foreach (Transform bg in backgrounds)
         {
             bg.Translate(Vector3.left * scrollSpeed * Time.deltaTime);
@@ -53,9 +53,9 @@ public class BackGroundLoop : MonoBehaviour
             Vector3 frontPos = backgrounds[rightIdx_Bg].localPosition;
             backgrounds[leftIdx_Bg].localPosition = frontPos + Vector3.right * backgroundWidth;
 
-            int pre_rightIndex = rightIdx_Bg;
+            int pre_leftIdx = leftIdx_Bg;
             rightIdx_Bg = leftIdx_Bg;
-            leftIdx_Bg = pre_rightIndex - 1 == -1 ? backgrounds.Length - 1 : pre_rightIndex - 1;
+            leftIdx_Bg = pre_leftIdx + 1 > backgrounds.Length - 1 ? 0: pre_leftIdx + 1;
         }
     }
 
@@ -66,9 +66,9 @@ public class BackGroundLoop : MonoBehaviour
             Vector3 frontPos = obstacles[rightIdx_Ob].transform.localPosition;
             obstacles[leftIdx_Ob].SetRandomPosition(frontPos);
 
-            int pre_rightIndex = rightIdx_Ob;
+            int pre_leftIdx = leftIdx_Ob;
             rightIdx_Ob = leftIdx_Ob;
-            leftIdx_Ob = pre_rightIndex - 1 == -1 ? obstacles.Length - 1 : pre_rightIndex - 1;
+            leftIdx_Ob = pre_leftIdx + 1 > obstacles.Length - 1 ? 0 : pre_leftIdx + 1;
         }
     }
 }

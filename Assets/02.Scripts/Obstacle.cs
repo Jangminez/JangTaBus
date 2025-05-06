@@ -36,7 +36,7 @@ public class Obstacle : MonoBehaviour
             {
                 if(!collision.GetComponent<ShipController>().isDead)
                 {
-                    ShipGameManager.Instance.AddScore(1);
+                    GameManager.Instance.AddScoreMiniGame(1);
                 }
             }
     }

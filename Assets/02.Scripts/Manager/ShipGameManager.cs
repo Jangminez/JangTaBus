@@ -1,62 +1,33 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ShipGameManager : MonoBehaviour
+public class ShipGameManager : MiniGameManager
 {
     static ShipGameManager instance;
     public static ShipGameManager Instance { get => instance; }
-    private UIManager uiManager;
     [SerializeField] private BackGroundLoop backGroundLoop;
-    int currentScore = 0;
-    public int Score { get => currentScore; }
-    int bestScore = 0;
-    public int BestScore { get => bestScore; }
-    void Awake()
-    {
-        instance = this;
-        bestScore = PlayerPrefs.GetInt("SHIP_BESTSCORE", 0);
 
-        Time.timeScale = 0f;
-    }
-
-    void Start()
+    public override void Init(GameManager gameManager, UIManager uiManager)
     {
-        uiManager = UIManager.Instance;
+        base.Init(gameManager, uiManager);
+
+        gameManager.MiniGameBestScore = PlayerPrefs.GetInt("SHIP_BESTSCORE", 0);
+        goalScore = gameManager.ShipGame_Goal;
         backGroundLoop = FindObjectOfType<BackGroundLoop>();
-
-        AddScore(currentScore);
     }
 
-    public void GameStart()
+    public override void GameOver()
     {
-        Time.timeScale = 1f;
-    }
-
-    public void GameOver()
-    {
-        uiManager.SetGameOverUI();
+        base.GameOver();
         backGroundLoop.isGameOver = true;
     }
 
-    public void RestartGame()
+    public override void AddScore(int score)
     {
-        SceneLoadManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
-    }
+        base.AddScore(score);
 
-    public void ExitGame()
-    {
-        SceneLoadManager.Instance.LoadScene("MainScene");
-    }
-
-    public void AddScore(int score)
-    {
-        currentScore += score;
-        uiManager.UpdateScoreText(currentScore);
-
-        if (currentScore > bestScore)
+        if (gameManager.MiniGameScore > gameManager.MiniGameBestScore)
         {
-            PlayerPrefs.SetInt("SHIP_BESTSCORE", currentScore);
+            PlayerPrefs.SetInt("SHIP_BESTSCORE", gameManager.MiniGameScore);
         }
     }
 }

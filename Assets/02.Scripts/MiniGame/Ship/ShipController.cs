@@ -55,6 +55,6 @@ public class ShipController : MonoBehaviour
         particle.Stop();
         _anim.SetTrigger("IsDie");
 
-        ShipGameManager.Instance.GameOver();
+        GameManager.Instance.MiniGameOver();
     }
 }
