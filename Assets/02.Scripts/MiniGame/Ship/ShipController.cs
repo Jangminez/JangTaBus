@@ -8,6 +8,8 @@ public class ShipController : MonoBehaviour
     [SerializeField] ParticleSystem particle;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] public bool isDead = false;
+    [SerializeField] AudioClip jumpClip;
+    [SerializeField] AudioClip deathClip;
     bool isUp = false;
 
     void Awake()
@@ -37,6 +39,8 @@ public class ShipController : MonoBehaviour
 
         if (isUp)
         {
+            SoundManager.PlaySFX(jumpClip);
+
             _rb.velocity = Vector2.zero;
             _rb.velocity += Vector2.up * jumpForce;
             isUp = false;
@@ -50,6 +54,8 @@ public class ShipController : MonoBehaviour
     {
         if(isDead) return;
 
+        SoundManager.PlaySFX(deathClip);
+        
         isDead = true;
 
         particle.Stop();

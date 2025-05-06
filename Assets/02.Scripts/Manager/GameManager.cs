@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
 {
     SceneLoadManager sceneLoadManager;
     UIManager uiManager;
+    public SoundManager SoundManager { private set; get; }
 
     private int coin;
     public int Coin
@@ -34,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     {
         sceneLoadManager = GetComponentInChildren<SceneLoadManager>();
         uiManager = GetComponentInChildren<UIManager>();
+        SoundManager = GetComponentInChildren<SoundManager>();
 
         // 씬 로딩 이벤트 연결
         if (sceneLoadManager != null)
@@ -58,6 +60,7 @@ public class GameManager : Singleton<GameManager>
         if (sceneName == "MainScene")
         {
             uiManager.ActiveCoinCanvas(true);
+            SoundManager.SetBasicBGM();
         }
 
         else

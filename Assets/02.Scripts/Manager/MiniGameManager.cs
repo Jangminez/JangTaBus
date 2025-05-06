@@ -4,6 +4,7 @@ public class MiniGameManager : MonoBehaviour
 {
     protected UIManager uiManager;
     protected GameManager gameManager;
+    protected SoundManager soundManager;
 
     public virtual void Awake()
     {
@@ -14,6 +15,7 @@ public class MiniGameManager : MonoBehaviour
     {
         this.gameManager = gameManager;
         this.uiManager = uiManager;
+        soundManager = gameManager.SoundManager;
 
         gameManager.MiniGameScore = 0;
         AddScore(gameManager.MiniGameScore);
