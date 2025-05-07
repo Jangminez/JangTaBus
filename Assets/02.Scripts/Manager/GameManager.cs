@@ -77,6 +77,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    // 미니게임 관련 변수들 초기화
     void InitMiniGame()
     {
         currentMiniGame = FindObjectOfType<MiniGameManager>();
@@ -89,27 +90,32 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    // 미니게임 시작
     public void StartMiniGame()
     {
         currentMiniGame.GameStart();
     }
 
+    // 미니게임 게임오버
     public void MiniGameOver()
     {
         currentMiniGame.GameOver();
     }
 
+    // 미니게임 재시작
     public void RestartMiniGame()
     {
         sceneLoadManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    // 미니게임 나가기 (메인으로 돌아가기)
     public void ExitMiniGame()
     {
         sceneLoadManager.LoadScene("MainScene");
         Time.timeScale = 1f;
     }
 
+    // 미니게임 점수 추가
     public void AddScoreMiniGame(int score)
     {
         currentMiniGame.AddScore(score);
@@ -131,7 +137,7 @@ public class GameManager : Singleton<GameManager>
         sceneLoadManager.LoadScene("MiniGame_Farm");
     }
 
-    // 각 미니 게임 목표 점수 체크
+    // 각 미니 게임 목표 점수 체크 및 보상 지급
     public void CheckGoal(MiniGameType type)
     {
         int rewardCoin = 0;

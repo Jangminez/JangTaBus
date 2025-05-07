@@ -36,6 +36,7 @@ public class BaseController : MonoBehaviour
         Movement(movementDirection);
     }
 
+    // 플레이어 이동
     protected virtual void Movement(Vector2 direction)
     {
         direction *= statController.Speed;
@@ -44,6 +45,7 @@ public class BaseController : MonoBehaviour
         animationController.Move(direction);
     }
 
+    // 마우스 위치에 따른 회전
     protected virtual void Rotate(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

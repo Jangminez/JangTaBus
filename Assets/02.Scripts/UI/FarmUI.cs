@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FarmUI : BaseUI
 {
-    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI timeText; // 타이머 텍스트
 
     public override void Init(GameManager gameManager, UIManager uiManager)
     {
@@ -13,6 +13,7 @@ public class FarmUI : BaseUI
         goalText.text = gameManager.FarmGame_Goal.ToString();
     }
 
+    // 타이머 설정
     public override void SetTimer(float time)
     {
         timeText.text = Mathf.CeilToInt(time).ToString();

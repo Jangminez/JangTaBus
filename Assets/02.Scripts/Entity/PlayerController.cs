@@ -16,12 +16,14 @@ public class PlayerController : BaseController
         Init();
     }
 
+    // InputSystem을 통한 이동값 설정
     void OnMove(InputValue inputValue)
     {
         movementDirection = inputValue.Get<Vector2>();
         movementDirection = movementDirection.normalized;
     }
 
+    // InputSystem을 통한 보는 방향 설정
     void OnLook(InputValue inputValue)
     {
         Vector2 mousePosition = inputValue.Get<Vector2>();

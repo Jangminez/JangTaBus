@@ -16,6 +16,7 @@ public class ShipGameManager : MiniGameManager
     public override void GameOver()
     {
         base.GameOver();
+        
         backGroundLoop.isGameOver = true;
         gameManager.CheckGoal(MiniGameType.Ship);
     }

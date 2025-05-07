@@ -8,6 +8,7 @@ public class MiniGameManager : MonoBehaviour
 
     public virtual void Awake()
     {
+        // 미니게임 씬이 시작되면 GameManager에 currentMiniGame 설정
         GameManager.Instance.currentMiniGame = this;
     }
 
@@ -16,6 +17,7 @@ public class MiniGameManager : MonoBehaviour
 
     }
 
+    // 미니게임 매니저 초기화
     public virtual void Init(GameManager gameManager, UIManager uiManager)
     {
         this.gameManager = gameManager;
@@ -34,12 +36,14 @@ public class MiniGameManager : MonoBehaviour
 
     public virtual void GameOver()
     {
+        // 점수가 최고 점수보다 높다면 최고 점수 변경
         if(gameManager.MiniGameScore > gameManager.MiniGameBestScore)
             gameManager.MiniGameBestScore = gameManager.MiniGameScore;
-            
+
         uiManager.SetGameOverUI();
     }
 
+    // 점수 추가
     public virtual void AddScore(int score)
     {
         gameManager.MiniGameScore += score;
