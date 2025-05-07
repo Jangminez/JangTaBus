@@ -9,7 +9,7 @@ public class FarmGameManager : MiniGameManager
     {
         base.Init(gameManager, uiManager);
 
-        gameManager.MiniGameBestScore = PlayerPrefs.GetInt("FARM_BESTSCORE", 0);
+        gameManager.MiniGameBestScore = PlayerPrefsHandler.GetFarmBestScore();
         cropsGenerator = GetComponentInChildren<CropsGenerator>();
         cropsGenerator.Init();
 
@@ -31,7 +31,7 @@ public class FarmGameManager : MiniGameManager
 
         if (gameManager.MiniGameScore > gameManager.MiniGameBestScore)
         {
-            PlayerPrefs.SetInt("FARM_BESTSCORE", gameManager.MiniGameScore);
+            PlayerPrefsHandler.SetFarmBestScore(gameManager.MiniGameScore);
         }
     }
 

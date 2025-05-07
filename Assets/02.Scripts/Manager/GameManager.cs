@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
 
         InitGoalScore();
-        coin = PlayerPrefs.GetInt("Coin", 0);
+        coin = PlayerPrefsHandler.GetCoin();
     }
 
     void Start()
@@ -53,8 +53,8 @@ public class GameManager : Singleton<GameManager>
     // 각 미니게임의 목표 점수 초기화
     void InitGoalScore()
     {
-        shipGame_Goal = PlayerPrefs.GetInt("SHIPGAME_GOAL", 10);
-        farmGame_Goal = PlayerPrefs.GetInt("FARMGAME_GOAL", 100);
+        shipGame_Goal = PlayerPrefsHandler.GetShipGoalScore();
+        farmGame_Goal = PlayerPrefsHandler.GetFarmGoalScore();
     }
 
     // 미니게임 씬 로드 시 초기화
@@ -144,7 +144,7 @@ public class GameManager : Singleton<GameManager>
                 if (miniGameScore >= shipGame_Goal)
                 {
                     shipGame_Goal += 10;
-                    PlayerPrefs.SetInt("SHIPGAME_GOAL", shipGame_Goal);
+                    PlayerPrefsHandler.SetShipGoalScore(shipGame_Goal);
 
                     uiManager.SetGoalUI(true, rewardCoin * 2);
                     coin += rewardCoin * 2;
@@ -157,7 +157,7 @@ public class GameManager : Singleton<GameManager>
                     uiManager.SetCoinText(coin);
                 }
 
-                PlayerPrefs.SetInt("Coin", coin);
+                PlayerPrefsHandler.SetCoin(coin);
                 break;
 
             case MiniGameType.Farm:
@@ -165,7 +165,7 @@ public class GameManager : Singleton<GameManager>
                 if (miniGameScore >= farmGame_Goal)
                 {
                     farmGame_Goal += 50;
-                    PlayerPrefs.SetInt("FARMGAME_GOAL", farmGame_Goal);
+                    PlayerPrefsHandler.SetFarmGoalScore(farmGame_Goal);
 
                     uiManager.SetGoalUI(true, rewardCoin * 2);
                     coin += rewardCoin * 2;
@@ -178,7 +178,7 @@ public class GameManager : Singleton<GameManager>
                     uiManager.SetCoinText(coin);
                 }
 
-                PlayerPrefs.SetInt("Coin", coin);
+                PlayerPrefsHandler.SetCoin(coin);
                 break;
 
 

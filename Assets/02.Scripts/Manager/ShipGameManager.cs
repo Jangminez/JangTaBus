@@ -8,7 +8,7 @@ public class ShipGameManager : MiniGameManager
     {
         base.Init(gameManager, uiManager);
 
-        gameManager.MiniGameBestScore = PlayerPrefs.GetInt("SHIP_BESTSCORE", 0);
+        gameManager.MiniGameBestScore = PlayerPrefsHandler.GetShipBestScore();
         backGroundLoop = FindObjectOfType<BackGroundLoop>();
         soundManager.ChangeBgm(bgmClip);
     }
@@ -26,7 +26,7 @@ public class ShipGameManager : MiniGameManager
 
         if (gameManager.MiniGameScore > gameManager.MiniGameBestScore)
         {
-            PlayerPrefs.SetInt("SHIP_BESTSCORE", gameManager.MiniGameScore);
+            PlayerPrefsHandler.SetShipBestScore(gameManager.MiniGameScore);
         }
     }
 }
