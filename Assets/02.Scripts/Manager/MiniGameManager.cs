@@ -34,6 +34,9 @@ public class MiniGameManager : MonoBehaviour
 
     public virtual void GameOver()
     {
+        if(gameManager.MiniGameScore > gameManager.MiniGameBestScore)
+            gameManager.MiniGameBestScore = gameManager.MiniGameScore;
+            
         uiManager.SetGameOverUI();
     }
 

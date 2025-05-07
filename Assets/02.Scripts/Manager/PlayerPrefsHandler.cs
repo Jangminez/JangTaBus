@@ -23,7 +23,7 @@ public static class PlayerPrefsHandler
 
     public static int GetShipGoalScore()
     {
-        int goal = PlayerPrefs.GetInt(SHIP_GOAL, 0);
+        int goal = PlayerPrefs.GetInt(SHIP_GOAL, 10);
         return goal;
     }
 
@@ -45,7 +45,7 @@ public static class PlayerPrefsHandler
 
     public static int GetFarmGoalScore()
     {
-        int goal = PlayerPrefs.GetInt(FARM_GOAL, 0);
+        int goal = PlayerPrefs.GetInt(FARM_GOAL, 100);
         return goal;
     }
 
@@ -66,7 +66,7 @@ public static class PlayerPrefsHandler
     }
     public static int GetDungeonGoalScore()
     {
-        int goal = PlayerPrefs.GetInt(DUNGEON_GOAL, 0);
+        int goal = PlayerPrefs.GetInt(DUNGEON_GOAL, 30);
         return goal;
     }
 
