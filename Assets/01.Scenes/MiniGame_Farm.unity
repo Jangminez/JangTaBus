@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropsGenerator: {fileID: 0}
-  bgmClip: {fileID: 0}
+  bgmClip: {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
   limitTime: 60
 --- !u!4 &37984339
 Transform:
