@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum MiniGameType { Ship, Dungeon }
+public enum MiniGameType { Ship, Farm, Dungeon }
 public class MiniGameZone : MonoBehaviour
 {
     [SerializeField] private MiniGameType miniGameType;
@@ -18,14 +18,18 @@ public class MiniGameZone : MonoBehaviour
 
     void Start()
     {
-        switch(miniGameType)
+        switch (miniGameType)
         {
             case MiniGameType.Ship:
                 goalText.text = GameManager.Instance.ShipGame_Goal.ToString();
-            break;
+                break;
+
+            case MiniGameType.Farm:
+                goalText.text = GameManager.Instance.FarmGame_Goal.ToString();
+                break;
 
             case MiniGameType.Dungeon:
-            break;
+                break;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -35,19 +39,23 @@ public class MiniGameZone : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        infoCanvas.SetActive(false);      
+        infoCanvas.SetActive(false);
     }
 
     void StartMiniGame()
     {
-        switch(miniGameType)
+        switch (miniGameType)
         {
             case MiniGameType.Ship:
                 GameManager.Instance.PlayShipGame();
-            break;
+                break;
 
+            case MiniGameType.Farm:
+                GameManager.Instance.PlayFarmGame();
+                break;
+                
             case MiniGameType.Dungeon:
-            break;
+                break;
         }
     }
 }

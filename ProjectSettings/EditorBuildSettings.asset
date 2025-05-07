@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/MiniGame_Ship.unity
     guid: b45c739be4260634dbb94c81bf9a5015
+  - enabled: 1
+    path: Assets/01.Scenes/MiniGame_Farm.unity
+    guid: fa11268a51fa20d42989006ca2fd3672
   m_configObjects: {}

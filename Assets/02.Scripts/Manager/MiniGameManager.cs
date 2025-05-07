@@ -11,6 +11,11 @@ public class MiniGameManager : MonoBehaviour
         GameManager.Instance.currentMiniGame = this;
     }
 
+    protected virtual void Update()
+    {
+
+    }
+
     public virtual void Init(GameManager gameManager, UIManager uiManager)
     {
         this.gameManager = gameManager;

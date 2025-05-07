@@ -29,6 +29,11 @@ public class UIManager : MonoBehaviour
         currentUI.SetGameOverUI();
     }
 
+    public void SetTimer(float time)
+    {
+        currentUI.SetTimer(time);
+    }
+
     /// <summary>
     /// 보상 UI 띄우기
     /// </summary>
