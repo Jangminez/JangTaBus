@@ -3,32 +3,50 @@ using UnityEngine;
 
 public class Local_LeaderBoard : MonoBehaviour
 {
-    [SerializeField] GameObject leaderBoardCanvas;
+    [SerializeField] GameObject leaderBoard;
+    [SerializeField] GameObject keyText;
     [SerializeField] TextMeshProUGUI shipBestText;
     [SerializeField] TextMeshProUGUI farmBestText;
     [SerializeField] TextMeshProUGUI dungeonBestText;
+    bool isTrigger = false;
 
     void Awake()
     {
-        leaderBoardCanvas.SetActive(false);
+        leaderBoard.SetActive(false);
+        keyText.SetActive(false);
     }
 
     void Start()
     {
-        shipBestText.text = PlayerPrefs.GetInt("SHIP_BESTSCORE", 0).ToString();
-        farmBestText.text = PlayerPrefs.GetInt("FARM_BESTSCORE" ,0).ToString();
-        dungeonBestText.text = PlayerPrefs.GetInt("DUNGEON_BESTSCORE", 0).ToString();
+        shipBestText.text = PlayerPrefsHandler.GetShipBestScore().ToString();
+        farmBestText.text = PlayerPrefsHandler.GetFarmBestScore().ToString();
+        dungeonBestText.text = PlayerPrefsHandler.GetDungeonBestScore().ToString();
     }
-    
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && isTrigger)
+        {
+            leaderBoard.SetActive(true);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
-            leaderBoardCanvas.SetActive(true);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            keyText.SetActive(true);
+            isTrigger = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
-            leaderBoardCanvas.SetActive(false);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            keyText.SetActive(false);
+            isTrigger = false;
+            leaderBoard.SetActive(false);
+        }
     }
 }
