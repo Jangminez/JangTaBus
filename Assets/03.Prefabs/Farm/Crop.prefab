@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2070679166684613450}
   - component: {fileID: 1908952594411153328}
-  - component: {fileID: 4221615619099192970}
   - component: {fileID: 3395683631529739377}
   - component: {fileID: 742024695490432505}
+  - component: {fileID: 4221615619099192970}
   m_Layer: 0
   m_Name: Crop
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3f3e7e2077e361a42b0fe6564af3977f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,29 +84,9 @@ SpriteRenderer:
   m_Size: {x: 0.3125, y: 0.3125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4221615619099192970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4503960502175389938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6579cbb32ed37b4db08c415b7a7d0ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cropsGenerator: {fileID: 0}
-  cropSprites:
-  - {fileID: 21300000, guid: 3f3e7e2077e361a42b0fe6564af3977f, type: 3}
-  - {fileID: 21300000, guid: 4ddd9eede87bd6c4289bb3a16ec4590e, type: 3}
-  - {fileID: 21300000, guid: 06091ea96585a9643bcbf11bc2ce3eae, type: 3}
-  - {fileID: 21300000, guid: 4ce16c9f33d0e6f4da773750e3600f10, type: 3}
-  cropClip: {fileID: 8300000, guid: fde7c723eecb95a41bfd6ec17ef45d8d, type: 3}
-  bombClip: {fileID: 8300000, guid: eb75e777176d420479970ab90b41580d, type: 3}
 --- !u!50 &3395683631529739377
 Rigidbody2D:
   serializedVersion: 4
@@ -179,3 +159,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4221615619099192970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4503960502175389938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6579cbb32ed37b4db08c415b7a7d0ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropsGenerator: {fileID: 0}
+  cropSprites:
+  - {fileID: 21300000, guid: 3f3e7e2077e361a42b0fe6564af3977f, type: 3}
+  - {fileID: 21300000, guid: 4ddd9eede87bd6c4289bb3a16ec4590e, type: 3}
+  - {fileID: 21300000, guid: 06091ea96585a9643bcbf11bc2ce3eae, type: 3}
+  - {fileID: 21300000, guid: 4ce16c9f33d0e6f4da773750e3600f10, type: 3}
+  cropClip: {fileID: 8300000, guid: fde7c723eecb95a41bfd6ec17ef45d8d, type: 3}
+  bombClip: {fileID: 8300000, guid: eb75e777176d420479970ab90b41580d, type: 3}

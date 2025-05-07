@@ -23,6 +23,7 @@ public class CropsGenerator : MonoBehaviour
         StartCoroutine(GenerateCrop());
     }
 
+    // crop 큐에서 꺼내서 사용 
     public void GetCrop()
     {
         if (cropsPool.Count > 0)
@@ -30,6 +31,7 @@ public class CropsGenerator : MonoBehaviour
             Crop crop = cropsPool.Dequeue();
             crop.gameObject.SetActive(true);
         }
+        // 부족하면 새로 생성
         else
         {
             Crop newCrop = Instantiate(cropPrefab, transform);
@@ -37,12 +39,14 @@ public class CropsGenerator : MonoBehaviour
         }
     }
 
+    // 사용된 crop 다시 큐로 반환
     public void ReturnCrop(Crop crop)
     {
         crop.gameObject.SetActive(false);
         cropsPool.Enqueue(crop);
     }
 
+    // 일정한 주기로 농작물 생성
     IEnumerator GenerateCrop()
     {
         while (!isGameOver)

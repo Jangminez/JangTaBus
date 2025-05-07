@@ -26,15 +26,6 @@ public class FarmPlayerController : BaseController
         lookDirection = movementDirection;
     }
 
-    protected override void Rotate(Vector2 direction)
-    {
-        if (direction.x < 0)
-            spriteRenderer.flipX = true;
-
-        else if (direction.x > 0)
-            spriteRenderer.flipX = false;
-    }
-
     void OnJump(InputValue inputValue)
     {
         isJump = inputValue.isPressed;
@@ -74,4 +65,14 @@ public class FarmPlayerController : BaseController
         _rb.velocity = new Vector2(direction.x, _rb.velocity.y);
         animationController.Move(direction);
     }
+
+    protected override void Rotate(Vector2 direction)
+    {
+        if (direction.x < 0)
+            spriteRenderer.flipX = true;
+
+        else if (direction.x > 0)
+            spriteRenderer.flipX = false;
+    }
 }
+
